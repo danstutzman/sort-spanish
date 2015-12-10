@@ -1,0 +1,2 @@
+aspell -d en dump master > words.en.txt
+aspell -d es dump master | aspell -l es expand > words.es.txt

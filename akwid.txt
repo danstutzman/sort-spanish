@@ -1,0 +1,1 @@
+../scrape-spanish-lyrics/akwid.txt
