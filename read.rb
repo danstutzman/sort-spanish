@@ -14,9 +14,9 @@ File.open('words.es.txt').each_line do |line|
   end
 end
 
-STDERR.puts "Reading akwid.txt..."
+STDERR.puts "Reading akwid.raw.txt..."
 lines = []
-File.open('akwid.txt').each_line do |line|
+File.open('akwid.raw.txt').each_line do |line|
   object = JSON.parse(line)
   if object['type'] == 'song_text'
     lines += object['song_text']
@@ -35,4 +35,8 @@ lines.reject! do |line|
   num_es_words < num_en_words || (num_es_words < words.size / 2)
 end
 
-puts lines.sort_by { |line| line.length }
+File.open 'akwid.clean.txt', 'w' do |file|
+  for line in lines.sort_by { |line| line.length }.map { |line| line.downcase }
+    file.puts line
+  end
+end
